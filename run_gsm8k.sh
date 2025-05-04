@@ -1,0 +1,31 @@
+deepspeed --module train_grpo_r1 \
+  --pretrain Qwen/Qwen2.5-1.5B \
+  --save_path logs/gsm8k/Qwen2___5-1___5B \
+  --use_tensorboard logs/gsm8k/checkpoint/Qwen2___5-1___5B \
+  --save_steps 10 \
+  --ckpt_path logs/gsm8k/checkpoint/Qwen2___5-1___5B \
+  --save_hf_ckpt \
+  --disable_ds_ckpt \
+  --logging_steps 1 \
+  --eval_steps 10 \
+  --micro_train_batch_size 1 \
+  --train_batch_size 4 \
+  --micro_rollout_batch_size 1 \
+  --rollout_batch_size 8 \
+  --n_samples_per_prompt 4 \
+  --max_epochs 1 \
+  --prompt_max_len 1024 \
+  --generate_max_len 1024 \
+  --zero_stage 2 \
+  --bf16 \
+  --actor_learning_rate 5e-7 \
+  --init_kl_coef 0.01 \
+  --prompt_data openai/gsm8k \
+  --input_key question \
+  --answer_key answer \
+  --advantage_estimator grpo \
+  --apply_chat_template \
+  --max_samples 100000 \
+  --normalize_reward \
+  --adam_offload \
+  --gradient_checkpointing

@@ -1,0 +1,33 @@
+deepspeed --module train_grpo_r1 \
+  --pretrain Qwen/Qwen2.5-1.5B \
+  --save_path logs/huggingface_math/Qwen2___5-1___5B \
+  --use_tensorboard logs/huggingface_math/checkpoint/Qwen2___5-1___5B \
+  --save_steps 10 \
+  --ckpt_path logs/huggingface_math/checkpoint/Qwen2___5-1___5B \
+  --save_hf_ckpt \
+  --disable_ds_ckpt \
+  --logging_steps 1 \
+  --eval_steps 10 \
+  --micro_train_batch_size 1 \
+  --train_batch_size 64 \
+  --micro_rollout_batch_size 2 \
+  --rollout_batch_size 32 \
+  --temperature 0.6 \
+  --n_samples_per_prompt 8 \
+  --max_epochs 1 \
+  --num_episodes 3 \
+  --prompt_max_len 1024 \
+  --generate_max_len 1024 \
+  --zero_stage 2 \
+  --bf16 \
+  --actor_learning_rate 1e-6 \
+  --init_kl_coef 0.01 \
+  --prompt_data HuggingFaceH4/MATH \
+  --input_key problem \
+  --answer_key solution \
+  --advantage_estimator grpo \
+  --apply_chat_template \
+  --max_samples 100000 \
+  --normalize_reward \
+  --adam_offload \
+  --gradient_checkpointing
