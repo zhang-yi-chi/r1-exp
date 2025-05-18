@@ -16,3 +16,7 @@ Model `Qwen2.5-1.5B` + dataset `HuggingFaceH4/MATH`
 ```
 bash run_huggingface_math.sh
 ```
+
+### Result
+#### openai/gsm8k
+![gsm8k](gsm8k_result.jpg)
